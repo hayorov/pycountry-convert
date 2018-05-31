@@ -12,6 +12,7 @@ from pycountry_convert import (
     country_alpha3_to_country_alpha2,
     country_name_to_country_alpha2,
     country_name_to_country_alpha3,
+    country_alpha3_to_country_name
 )
 
 class TestCountryConvert():
@@ -93,7 +94,29 @@ class TestCountryConvert():
         assert(cn_a2_code)
         assert(cn_a2_code == 'RU')
 
+    def test_country_alpha3_to_country_name(self):
+        cn_name = country_alpha3_to_country_name('USA')
+        assert (cn_name)
+        assert (cn_name == 'United States')
+
+        cn_name = country_alpha3_to_country_name('JPN')
+        assert (cn_name)
+        assert (cn_name == 'Japan')
+
+        cn_name = country_alpha3_to_country_name('KOR')
+        assert (cn_name)
+        assert (cn_name == 'Korea, Republic of')
+
+        cn_name = country_alpha3_to_country_name('RUS')
+        assert (cn_name)
+        assert (cn_name == 'Russian Federation')
+
     def test_invalid_country_alpha2(self):
         with pytest.raises(KeyError) as e_key:
             country_alpha2_to_continent_code('AA')
         assert "Invalid Country Alpha-2 code: 'AA'" in str(e_key)
+
+    def test_invalid_country_alpha3(self):
+        with pytest.raises(KeyError) as e_key:
+            country_alpha3_to_country_name('ZZZ')
+        assert "Invalid Country Alpha-3 code: 'ZZZ'" in str(e_key)

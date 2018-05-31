@@ -32,6 +32,20 @@ def country_alpha2_to_country_name(country_2_code, cn_name_format=COUNTRY_NAME_F
 
     return dict_country_alpha2_to_country_name[country_2_code]
 
+def country_alpha3_to_country_name(country_3_code, cn_name_format=COUNTRY_NAME_FORMAT_DEFAULT):
+    """Convert country ISO 3166-1 Alpha-3 code to country name.
+    """
+    if country_3_code is None or len(country_3_code) != 3:
+        raise KeyError("Invalid Country Alpha-3 code: '{0}'".format(country_3_code))
+
+    from .country_mappings import map_country_alpha3_to_country_name
+
+    dict_country_alpha3_to_country_name = map_country_alpha3_to_country_name(cn_name_format)
+
+    if country_3_code not in dict_country_alpha3_to_country_name:
+        raise KeyError("Invalid Country Alpha-3 code: '{0}'".format(country_3_code))
+
+    return dict_country_alpha3_to_country_name[country_3_code]
 
 def country_alpha3_to_country_alpha2(country_3_code):
     """Convert country ISO 3166-1 Alpha-3 code to country ISO 3166-1 Alpha-2.
