@@ -30,7 +30,8 @@ PACKAGES = [
     'pycountry_convert'
 ]
 
-TEST_REQUIREMENTS = ['pytest>=3.3.1', 'pytest-cov']
+TEST_REQUIREMENTS = ['pytest>=3.4.0', 'pytest-mock>=1.6.3', 'pytest-cov>=2.5.1']
+
 
 with open('pycountry_convert/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
